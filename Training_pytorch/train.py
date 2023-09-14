@@ -51,6 +51,7 @@ current_time = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 args = parser.parse_args()
 args.wl_weight = 5            # weight precision
 args.wl_grad = 5              # gradient precision
+args.wl_error = 5
 args.cellBit = 5              # cell precision (in V2.0, we only support one-cell-per-synapse, i.e. cellBit==wl_weight==wl_grad)
 args.max_level = 32           # Maximum number of conductance states during weight update (floor(log2(max_level))=cellBit) 
 args.c2cVari = 0.003          # cycle-to-cycle variation
@@ -254,6 +255,7 @@ try:
             acc = 100. * correct / len(test_loader.dataset)
             logger('\tEpoch {} Test set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)'.format(
                 epoch, test_loss, correct, len(test_loader.dataset), acc))
+            test_loss = test_loss.cpu().data.numpy()
             accuracy = acc.cpu().data.numpy()
             np.savetxt(out, [[epoch, test_loss, accuracy]], delimiter=",",fmt='%f')
             

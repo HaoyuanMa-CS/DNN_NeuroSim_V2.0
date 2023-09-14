@@ -305,7 +305,7 @@ int main(int argc, char * argv[]) {
 	
 	// save breakdown results of each layer to csv files
 	ofstream breakdownfile;
-	string breakdownfile_name = "./NeuroSim_Results_Each_Epoch/NeuroSim_Breakdown_Epock_";
+	string breakdownfile_name = "./NeuroSim_Results_Each_Epoch/NeuroSim_Breakdown_Epoch_";
 	breakdownfile_name.append(argv[1]);
 	breakdownfile_name.append(".csv");
 	breakdownfile.open (breakdownfile_name, ios::app);
